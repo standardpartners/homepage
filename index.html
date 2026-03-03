@@ -1,0 +1,1277 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Standard Partners - Financial Solutions for Foreigners in Korea</title>
+  <meta name="description" content="Standard Partners provides structured financial solutions for foreigners in Korea: diagnostics, strategy, matching, and end-to-end support." />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#0B1B3A" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Standard Partners - Financial Solutions for Foreigners in Korea" />
+  <meta property="og:description" content="Structured finance solutions for foreigners in Korea. Diagnostics, strategy, matching, and support until disbursement." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://iili.io/qBTDpQ1.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://iili.io/qBTDpQ1.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root{
+      --bg:#fff;
+      --text:#0b1324;
+      --muted:#52607a;
+      --line:rgba(12,25,56,.10);
+      --shadow:0 10px 30px rgba(11,27,58,.08);
+      --shadow-soft:0 6px 16px rgba(11,27,58,.08);
+      --radius:14px;
+      --radius-lg:18px;
+
+      --brand:#0B1B3A;
+      --brand2:#153B8A;
+      --focus:rgba(21,59,138,.25);
+
+      --maxw:980px;
+      --font: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans KR", sans-serif;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:var(--font);
+      color:var(--text);
+      background:var(--bg);
+      line-height:1.6;
+    }
+    img{max-width:100%;display:block}
+    a{color:inherit;text-decoration:none}
+    a.link{text-decoration:underline;text-underline-offset:3px}
+    .container{width:min(var(--maxw), calc(100% - 36px)); margin:0 auto}
+
+    .skip-link{
+      position:absolute;left:-999px;top:0;background:#000;color:#fff;
+      padding:10px 12px;border-radius:10px;z-index:9999
+    }
+    .skip-link:focus{left:14px;top:14px;outline:none}
+
+    /* Header: vertical-first (mobile) */
+    .site-header{
+      position:sticky;top:0;z-index:50;
+      background:rgba(255,255,255,.78);
+      backdrop-filter:saturate(160%) blur(10px);
+      border-bottom:1px solid transparent;
+      transition:border-color .18s ease, box-shadow .18s ease;
+    }
+    .site-header[data-elevate="true"]{
+      border-bottom-color:var(--line);
+      box-shadow:0 10px 30px rgba(11,27,58,.06);
+    }
+    .header-inner{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      padding:12px 0 14px;
+    }
+    .top-row{
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+    }
+    .brand{
+      display:flex;align-items:center;
+      gap:0;
+    }
+    .brand-logo{
+      height:44px;
+      width:auto;
+      display:block;
+      object-fit:contain;
+    }
+
+    .lang-tabs{
+      display:flex;align-items:center;gap:8px;
+      background:rgba(11,27,58,.05);
+      border:1px solid var(--line);
+      padding:6px;border-radius:999px;
+    }
+    .lang-tab{
+      border:0;background:transparent;border-radius:999px;
+      padding:10px 12px;font-weight:800;font-size:13px;cursor:pointer;
+      color:rgba(11,27,58,.75);
+    }
+    .lang-tab[aria-selected="true"]{
+      background:#fff;color:var(--brand);
+      box-shadow:0 8px 18px rgba(11,27,58,.10);
+    }
+    .lang-tab:focus-visible{outline:4px solid var(--focus);outline-offset:2px}
+
+    /* Vertical menu strip */
+    .nav-strip{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .nav-head{
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+      gap:10px;
+    }
+    .nav-toggle{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:44px;height:44px;
+      border-radius:12px;border:1px solid var(--line);
+      background:#fff;cursor:pointer;
+    }
+    .nav-toggle-lines{
+      width:18px;height:12px;position:relative;display:block;
+    }
+    .nav-toggle-lines::before,
+    .nav-toggle-lines::after{
+      content:"";position:absolute;left:0;right:0;height:2px;
+      background:var(--brand);border-radius:2px
+    }
+    .nav-toggle-lines::before{top:1px}
+    .nav-toggle-lines::after{bottom:1px}
+
+    .nav-menu{
+      display:none;
+      flex-direction:column;
+      gap:6px;
+      padding:10px;
+      border-radius:16px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.92);
+      backdrop-filter:blur(10px);
+      box-shadow:var(--shadow);
+    }
+    .nav-menu.open{display:flex}
+    .nav-link{
+      font-weight:700;
+      font-size:14px;
+      color:rgba(11,27,58,.86);
+      padding:12px 12px;
+      border-radius:12px;
+      background:rgba(11,27,58,.03);
+      border:1px solid rgba(12,25,56,.06);
+    }
+    .nav-link:hover{background:rgba(11,27,58,.06)}
+    .nav-link:focus-visible{outline:4px solid var(--focus);outline-offset:2px}
+
+    /* Sections (single-column, vertical) */
+    .section{padding:34px 0}
+    .section + .section{border-top:1px solid rgba(12,25,56,.06)}
+    .section-head{margin-bottom:14px}
+    .section-title{
+      margin:0 0 8px;
+      font-size:clamp(20px, 2.2vw, 30px);
+      letter-spacing:-0.02em;
+    }
+    .section-desc{margin:0;color:var(--muted);max-width:72ch}
+
+    .card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow-soft);
+      padding:16px;
+    }
+    .stack{display:flex;flex-direction:column;gap:12px}
+
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      border-radius:999px;border:1px solid var(--line);
+      padding:12px 16px;font-weight:700;font-size:14px;cursor:pointer;
+      transition:transform .12s ease, opacity .12s ease, border-color .12s ease;
+      user-select:none;
+    }
+    .btn:active{transform:translateY(1px)}
+    .btn:focus-visible{outline:4px solid var(--focus);outline-offset:2px}
+    .btn-primary{
+      background:linear-gradient(135deg,var(--brand),var(--brand2));
+      color:#fff;border-color:transparent;
+    }
+    .btn-primary:hover{opacity:.92}
+    .btn-secondary{background:#fff}
+    .btn-secondary:hover{border-color:rgba(11,27,58,.22)}
+    .btn-block{width:100%}
+    .btn-chip{
+      padding:8px 12px;font-size:13px;font-weight:800;background:#fff;
+    }
+
+    .hero{
+      padding:18px 0 28px;
+    }
+    .eyebrow{
+      margin:0 0 10px;color:rgba(21,59,138,.95);
+      font-weight:800;letter-spacing:.08em;text-transform:uppercase;font-size:12px;
+    }
+    .hero-title{
+      margin:0 0 12px;
+      font-size:clamp(28px, 3.2vw, 44px);
+      line-height:1.12;
+      letter-spacing:-0.03em;
+    }
+    .hero-subtitle{margin:0 0 14px;color:var(--muted);font-size:15px}
+    .hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 10px}
+
+    .hero-figure{
+      border-radius:var(--radius-lg);
+      overflow:hidden;border:1px solid var(--line);
+      box-shadow:var(--shadow);background:#fff;
+    }
+
+    .media-card{
+      border-radius:var(--radius-lg);
+      overflow:hidden;
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      background:#fff;
+    }
+    .media-img{width:100%;height:220px;object-fit:cover}
+    .media-body{padding:14px 16px}
+    .media-title{margin:0 0 6px;font-weight:900;letter-spacing:-0.02em}
+    .media-text{margin:0;color:var(--muted);font-size:14px}
+
+    .trust-grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:12px;
+      margin-top:12px;
+    }
+    .card-icon{
+      width:38px;height:38px;border-radius:12px;
+      display:flex;align-items:center;justify-content:center;
+      background:rgba(21,59,138,.10);
+      color:var(--brand);
+      font-weight:900;margin-bottom:12px;
+    }
+    .card-title{margin:0 0 8px;font-size:15px;letter-spacing:-0.02em;font-weight:900}
+    .card-text{margin:0;color:var(--muted);font-size:14px}
+
+    .proof{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:10px;
+      margin-top:10px;
+    }
+    .proof-item{
+      background:rgba(11,27,58,.03);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:12px 14px;
+    }
+    .proof-value{font-weight:900;font-size:16px;display:block}
+    .proof-label{color:var(--muted);font-size:13px;display:block}
+
+    .info-table{
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      overflow:hidden;background:#fff;
+      box-shadow:var(--shadow-soft);
+    }
+    .info-row{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:6px;
+      padding:14px 16px;
+      border-top:1px solid var(--line);
+    }
+    .info-row:first-child{border-top:0}
+    .info-key{color:rgba(11,27,58,.72);font-weight:900;font-size:13px}
+    .info-val{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+    .copy-hint{color:rgba(21,59,138,.95);font-weight:800;font-size:13px}
+
+    .bullets{margin:12px 0 0;padding-left:18px;color:rgba(11,27,58,.80)}
+    .bullets li{margin:8px 0}
+
+    .badge-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+    .badge{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:10px 12px;border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(11,27,58,.03);
+      font-weight:900;color:rgba(11,27,58,.82);font-size:13px;
+    }
+
+    .note{
+      margin-top:14px;border-radius:var(--radius);
+      border:1px solid var(--line);
+      background:#fff;padding:14px 16px;
+      box-shadow:var(--shadow-soft);
+      color:var(--muted);
+    }
+
+    .vision{
+      border-radius:var(--radius);
+      border:1px solid var(--line);
+      background:#fff;padding:16px;
+      box-shadow:var(--shadow-soft);
+    }
+    .vision-title{margin:0 0 8px;font-weight:900}
+    .vision-text{margin:0;color:var(--muted)}
+
+    .steps{
+      list-style:none;margin:0;padding:0;
+      display:flex;flex-direction:column;gap:10px;
+    }
+    .step{
+      display:grid;grid-template-columns:52px 1fr;gap:12px;align-items:start;
+      border-radius:var(--radius);
+      border:1px solid var(--line);
+      background:#fff;padding:14px 16px;
+      box-shadow:var(--shadow-soft);
+    }
+    .step-num{
+      width:44px;height:44px;border-radius:14px;
+      display:flex;align-items:center;justify-content:center;
+      background:rgba(21,59,138,.10);color:var(--brand);font-weight:900;
+    }
+    .step-title{margin:0 0 6px;font-size:15px;font-weight:900;letter-spacing:-0.02em}
+    .step-text{margin:0;color:var(--muted);font-size:14px}
+
+    .accordion{display:flex;flex-direction:column;gap:10px}
+    .acc-item{
+      border-radius:var(--radius);
+      border:1px solid var(--line);
+      background:#fff;
+      box-shadow:var(--shadow-soft);
+      overflow:hidden;
+    }
+    .acc-btn{
+      width:100%;
+      display:flex;align-items:center;justify-content:space-between;gap:14px;
+      padding:14px 16px;background:transparent;border:0;
+      cursor:pointer;font-weight:900;text-align:left;
+    }
+    .acc-btn:focus-visible{outline:4px solid var(--focus);outline-offset:2px}
+    .acc-icon{
+      width:34px;height:34px;border-radius:12px;
+      display:flex;align-items:center;justify-content:center;
+      background:rgba(11,27,58,.05);
+      color:rgba(11,27,58,.8);
+      font-weight:900;
+    }
+    .acc-panel{padding:0 16px 14px;color:var(--muted);display:none}
+    .acc-panel.open{display:block}
+
+    .contact-card{
+      border-radius:var(--radius-lg);
+      border:1px solid var(--line);
+      background:#fff;
+      box-shadow:var(--shadow);
+      padding:16px;
+    }
+    .form{display:flex;flex-direction:column;gap:12px}
+    .form-row{display:flex;flex-direction:column;gap:6px}
+    .label{font-weight:900;font-size:13px;color:rgba(11,27,58,.80)}
+    .input,.select,.textarea{
+      width:100%;
+      border:1px solid var(--line);
+      border-radius:12px;
+      padding:12px;
+      font:inherit;background:#fff;
+    }
+    .textarea{resize:vertical;min-height:120px}
+    .input:focus,.select:focus,.textarea:focus{
+      outline:4px solid var(--focus);
+      border-color:rgba(21,59,138,.35);
+    }
+    .form-note{margin:10px 0 0;color:var(--muted);font-size:13px}
+
+    .site-footer{
+      border-top:1px solid var(--line);
+      padding:26px 0 18px;
+      background:#fff;
+    }
+    .footer-box{
+      border-radius:var(--radius);
+      border:1px solid var(--line);
+      background:rgba(11,27,58,.02);
+      padding:14px 16px;
+      box-shadow:var(--shadow-soft);
+    }
+    .footer-name{margin:0 0 6px;font-weight:900;letter-spacing:-0.02em}
+    .footer-meta{margin:0 0 6px;color:var(--muted);font-size:13px}
+    .footer-bottom{
+      margin-top:12px;
+      display:flex;justify-content:space-between;align-items:center;
+      color:var(--muted);font-size:13px;gap:12px;flex-wrap:wrap;
+    }
+
+    .sr-only{
+      position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+      overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;
+    }
+
+    /* Larger screens: keep vertical feel but slightly widen */
+    @media (min-width: 900px){
+      .header-inner{flex-direction:row;align-items:center;justify-content:space-between}
+      .nav-strip{width: min(520px, 100%); align-items:flex-end}
+      .nav-head{width:100%}
+      .nav-menu{width:100%}
+      .media-img{height:260px}
+      .proof{grid-template-columns:1fr 1fr}
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" data-elevate="false">
+    <div class="container header-inner">
+      <div class="top-row">
+        <a class="brand" href="#home" aria-label="Standard Partners home">
+          <img class="brand-logo" src="https://iili.io/qKNSOUx.png" alt="Standard Partners logo" loading="eager" />
+        </a>
+
+        <div class="lang-tabs" role="tablist" aria-label="Language selector">
+          <button class="lang-tab" type="button" role="tab" aria-selected="true" data-lang="ru" id="tab-ru">Русский</button>
+          <button class="lang-tab" type="button" role="tab" aria-selected="false" data-lang="ko" id="tab-ko">한국어</button>
+        </div>
+      </div>
+
+      <div class="nav-strip" aria-label="Navigation strip">
+        <div class="nav-head">
+          <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
+            <span class="nav-toggle-lines" aria-hidden="true"></span>
+          </button>
+        </div>
+        <nav id="navMenu" class="nav-menu" aria-label="Primary">
+          <a class="nav-link" href="#home" data-i18n="nav.home">Главная</a>
+          <a class="nav-link" href="#trust" data-i18n="nav.trust">Доверие</a>
+          <a class="nav-link" href="#about" data-i18n="nav.about">О компании</a>
+          <a class="nav-link" href="#services" data-i18n="nav.services">Направления</a>
+          <a class="nav-link" href="#partners" data-i18n="nav.partners">Партнеры</a>
+          <a class="nav-link" href="#strengths" data-i18n="nav.strengths">Преимущества</a>
+          <a class="nav-link" href="#process" data-i18n="nav.process">Этапы</a>
+          <a class="nav-link" href="#faq" data-i18n="nav.faq">FAQ</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="sr-only" id="panel-ru" role="tabpanel" aria-labelledby="tab-ru"></div>
+    <div class="sr-only" id="panel-ko" role="tabpanel" aria-labelledby="tab-ko"></div>
+
+    <!-- HERO (vertical: text -> image -> proof) -->
+    <section id="home" class="section hero">
+      <div class="container stack">
+        <div>
+          <p class="eyebrow" data-i18n="hero.eyebrow">Центр финансовых решений</p>
+          <h1 class="hero-title" data-i18n="hero.title">Финансовые решения для иностранцев в Корее</h1>
+          <p class="hero-subtitle" data-i18n="hero.subtitle">
+            Standard Partners сопровождает диагностику, стратегию, подбор финансовой организации и поддержку до выдачи. Мы работаем структурно и прозрачно.
+          </p>
+
+          <div class="hero-actions">
+            <!-- 상담 요청하기 버튼: GitHub 페이지 링크로 바로 이동 -->
+            <a class="btn btn-primary" href="https://standardpartners.github.io/home/" data-i18n="hero.ctaPrimary">Запросить консультацию</a>
+            <a class="btn btn-secondary" href="#process" data-i18n="hero.ctaSecondary">Посмотреть этапы</a>
+          </div>
+        </div>
+
+        <figure class="hero-figure" aria-label="Hero image">
+          <img src="https://iili.io/qBTDpQ1.png" alt="전인수 대표" loading="eager" />
+        </figure>
+
+        <div class="proof" aria-label="Key proof points">
+          <div class="proof-item">
+            <!-- 러시아 사람들도 알아보기 쉽게 수정한 금액 표기 -->
+            <span class="proof-value" data-i18n="hero.proof1.value">55 млрд+ ₩</span>
+            <span class="proof-label" data-i18n="hero.proof1.label">Опыт PF-брокериджа</span>
+          </div>
+          <div class="proof-item">
+            <span class="proof-value" data-i18n="hero.proof2.value">Регистрация</span>
+            <span class="proof-label" data-i18n="hero.proof2.label">Прозрачная работа</span>
+          </div>
+        </div>
+
+        <div class="media-card" aria-label="Office image card">
+          <img
+            class="media-img"
+            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80"
+            alt="Modern bright office"
+            loading="lazy"
+          />
+          <div class="media-body">
+            <p class="media-title" data-i18n="hero.media1.title">Профессиональное сопровождение</p>
+            <p class="media-text" data-i18n="hero.media1.text">Структурный подход для сложных кейсов</p>
+          </div>
+        </div>
+
+        <div class="media-card" aria-label="Dashboard image card">
+          <img
+            class="media-img"
+            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80"
+            alt="Dashboard and charts on a screen"
+            loading="lazy"
+          />
+          <div class="media-body">
+            <p class="media-title" data-i18n="hero.media2.title">Выбор на основе данных</p>
+            <p class="media-text" data-i18n="hero.media2.text">Сравнение условий и диагностика одобрения</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRUST (vertical list) -->
+    <section id="trust" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title" data-i18n="trust.title">Почему нам доверяют</h2>
+          <p class="section-desc" data-i18n="trust.desc">Структура, практический опыт и прозрачная коммуникация.</p>
+        </div>
+
+        <div class="trust-grid">
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">✓</div>
+            <h3 class="card-title" data-i18n="trust.c1.title">Официальная регистрация</h3>
+            <p class="card-text" data-i18n="trust.c1.text">Работаем как зарегистрированная компания с прозрачными процедурами.</p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">◎</div>
+            <h3 class="card-title" data-i18n="trust.c2.title">Опыт PF-структурирования</h3>
+            <p class="card-text" data-i18n="trust.c2.text">Компетенции сформированы через сделки PF-финансирования.</p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">≋</div>
+            <h3 class="card-title" data-i18n="trust.c3.title">Стратегия для иностранцев</h3>
+            <p class="card-text" data-i18n="trust.c3.text">Учитываем визу, доход, занятость и кредитную историю комплексно.</p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">⛓</div>
+            <h3 class="card-title" data-i18n="trust.c4.title">Сеть партнеров</h3>
+            <p class="card-text" data-i18n="trust.c4.text">Практическая работа с несколькими организациями для реалистичного подбора.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT (table + meeting image) -->
+    <section id="about" class="section">
+      <div class="container stack">
+        <div class="section-head">
+          <h2 class="section-title" data-i18n="about.title">Информация о компании</h2>
+          <p class="section-desc" data-i18n="about.desc">Официальные данные и контактный канал.</p>
+        </div>
+
+        <div class="info-table" role="table" aria-label="Company information">
+          <div class="info-row" role="row">
+            <div class="info-key" role="cell" data-i18n="about.k1">Компания</div>
+            <div class="info-val" role="cell" data-i18n="company.name">스탠다드파트너스(Standard Partners Co., LTD)</div>
+          </div>
+
+          <div class="info-row" role="row">
+            <div class="info-key" role="cell" data-i18n="about.k2">Адрес</div>
+            <div class="info-val" role="cell">
+              <span id="companyAddress" data-i18n="company.address">인천광역시 남동구 남동서로236번길 30, 2층</span>
+              <button class="btn btn-chip" type="button" id="copyAddressBtn" data-i18n="about.copy">Копировать</button>
+              <span class="copy-hint" id="copyHint" aria-live="polite"></span>
+            </div>
+          </div>
+
+          <div class="info-row" role="row">
+            <div class="info-key" role="cell" data-i18n="about.k3">Email</div>
+            <div class="info-val" role="cell">
+              <a class="link" href="mailto:srandardpartnerskor@gmail.com">srandardpartnerskor@gmail.com</a>
+            </div>
+          </div>
+
+          <div class="info-row" role="row">
+            <div class="info-key" role="cell" data-i18n="about.k4">Дата основания</div>
+            <div class="info-val" role="cell" data-i18n="company.founded">2023년 3월 21일</div>
+          </div>
+        </div>
+
+        <div class="card" role="note" aria-label="Notice">
+          <h3 class="card-title" data-i18n="about.disclaimerTitle">Важно</h3>
+          <p class="card-text" data-i18n="about.disclaimerText">
+            Мы не являемся кредитором и не принимаем окончательное решение об одобрении. Итоговые условия и решение определяет финансовая организация.
+          </p>
+        </div>
+
+        <div class="media-card" aria-label="Meeting image card">
+          <img
+            class="media-img"
+            src="https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=1200&q=80"
+            alt="Business meeting in a modern office"
+            loading="lazy"
+          />
+          <div class="media-body">
+            <p class="media-title" data-i18n="about.capTitle">Структурно и комплаентно</p>
+            <p class="media-text" data-i18n="about.capText">Понятные шаги, помощь с документами и практическая коммуникация.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES (2 vertical cards) -->
+    <section id="services" class="section">
+      <div class="container stack">
+        <div class="section-head">
+          <h2 class="section-title" data-i18n="services.title">Направления деятельности</h2>
+          <p class="section-desc" data-i18n="services.desc">Два ключевых направления с упором на стратегию.</p>
+        </div>
+
+        <article class="card">
+          <h3 class="card-title" data-i18n="services.s1.title">Посредничество PF-финансирования (2023-2025)</h3>
+          <p class="card-text" data-i18n="services.s1.text">
+            Проектирование структуры финансирования и консультации по привлечению средств для строительных и девелоперских проектов. Совокупный объем посредничества - более 55 млрд вон. Накоплен опыт согласования условий и доведения сделок до исполнения.
+          </p>
+          <ul class="bullets">
+            <li data-i18n="services.s1.b1">Проектирование структуры капитала</li>
+            <li data-i18n="services.s1.b2">Поддержка переговоров по условиям</li>
+            <li data-i18n="services.s1.b3">Координация до исполнения</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3 class="card-title" data-i18n="services.s2.title">Кредиты для иностранцев (с 2 полугодия 2025)</h3>
+          <p class="card-text" data-i18n="services.s2.text">
+            Сопровождаем иностранцев и предпринимателей: необеспеченные кредиты, автозалог, залог недвижимости, структурирование финансирования для бизнеса. Анализируем критерии разных организаций и повышаем вероятность одобрения стратегией.
+          </p>
+          <ul class="bullets">
+            <li data-i18n="services.s2.b1">Необеспеченные и залоговые варианты</li>
+            <li data-i18n="services.s2.b2">Анализ визы и профиля дохода</li>
+            <li data-i18n="services.s2.b3">Стратегия подачи под критерии</li>
+          </ul>
+        </article>
+
+        <div class="media-card" aria-label="Dashboard image card">
+          <img
+            class="media-img"
+            src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=80"
+            alt="Laptop showing charts and analytics"
+            loading="lazy"
+          />
+          <div class="media-body">
+            <p class="media-title" data-i18n="services.mediaTitle">Сравнение условий и сценариев</p>
+            <p class="media-text" data-i18n="services.mediaText">Подбор на базе критериев и документации.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PARTNERS (badges) -->
+    <section id="partners" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title" data-i18n="partners.title">Партнерские финансовые организации</h2>
+          <p class="section-desc" data-i18n="partners.desc">Сравниваем условия, оцениваем вероятность одобрения и подбираем оптимальный вариант.</p>
+        </div>
+
+        <div class="badge-row" aria-label="Partner institutions">
+          <span class="badge" data-i18n="partners.p1">Jeonbuk Bank</span>
+          <span class="badge" data-i18n="partners.p2">NongHyup Bank</span>
+          <span class="badge" data-i18n="partners.p3">Suhyup</span>
+          <span class="badge" data-i18n="partners.p4">Credit Union</span>
+          <span class="badge" data-i18n="partners.p5">Korea Capital</span>
+        </div>
+
+        <div class="note">
+          <p data-i18n="partners.note">
+            Мы работаем с несколькими организациями: сравниваем ставки и условия, диагностируем вероятность одобрения и сопровождаем процесс от начала до конца.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- STRENGTHS (4 vertical cards + vision) -->
+    <section id="strengths" class="section">
+      <div class="container stack">
+        <div class="section-head">
+          <h2 class="section-title" data-i18n="strengths.title">Дифференцирующие преимущества</h2>
+          <p class="section-desc" data-i18n="strengths.desc">Практическая структуризация на базе реального опыта.</p>
+        </div>
+
+        <article class="card">
+          <h3 class="card-title" data-i18n="strengths.c1.title">Структуризация на базе PF</h3>
+          <p class="card-text" data-i18n="strengths.c1.text">Проектируем потоки и условия с подходом проектного финансирования.</p>
+        </article>
+
+        <article class="card">
+          <h3 class="card-title" data-i18n="strengths.c2.title">Стратегия под иностранные кейсы</h3>
+          <p class="card-text" data-i18n="strengths.c2.text">Комплексная оценка визы, дохода и кредитной истории анализируется стратегически.</p>
+        </article>
+
+        <article class="card">
+          <h3 class="card-title" data-i18n="strengths.c3.title">Сеть партнеров</h3>
+          <p class="card-text" data-i18n="strengths.c3.text">Реалистичная оценка и подбор на основе практической сети сотрудничества.</p>
+        </article>
+
+        <article class="card">
+          <h3 class="card-title" data-i18n="strengths.c4.title">Прозрачная работа</h3>
+          <p class="card-text" data-i18n="strengths.c4.text">Законная и прозрачная операционная модель зарегистрированной компании.</p>
+        </article>
+
+        <div class="vision">
+          <h3 class="vision-title" data-i18n="strengths.visionTitle">Миссия и видение</h3>
+          <p class="vision-text" data-i18n="strengths.visionText">
+            Standard Partners строит профессиональную платформу финансового посредничества для иностранцев. Мы повышаем доступность и безопасность финансовых решений, соединяя заемщика и финансовую организацию на основе доверия.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS (vertical steps) -->
+    <section id="process" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title" data-i18n="process.title">Как мы работаем</h2>
+          <p class="section-desc" data-i18n="process.desc">Пять этапов от консультации до поддержки при выдаче.</p>
+        </div>
+
+        <ol class="steps" aria-label="Process steps">
+          <li class="step">
+            <span class="step-num">1</span>
+            <div>
+              <h3 class="step-title" data-i18n="process.s1.title">Сбор информации</h3>
+              <p class="step-text" data-i18n="process.s1.text">Фиксируем цель, ограничения и ключевые параметры кейса.</p>
+            </div>
+          </li>
+
+          <li class="step">
+            <span class="step-num">2</span>
+            <div>
+              <h3 class="step-title" data-i18n="process.s2.title">Диагностика</h3>
+              <p class="step-text" data-i18n="process.s2.text">Формируем стратегию с учетом критериев различных организаций.</p>
+            </div>
+          </li>
+
+          <li class="step">
+            <span class="step-num">3</span>
+            <div>
+              <h3 class="step-title" data-i18n="process.s3.title">Подбор</h3>
+              <p class="step-text" data-i18n="process.s3.text">Подбираем варианты и предоставляем руководство по документам.</p>
+            </div>
+          </li>
+
+          <li class="step">
+            <span class="step-num">4</span>
+            <div>
+              <h3 class="step-title" data-i18n="process.s4.title">Исполнение</h3>
+              <p class="step-text" data-i18n="process.s4.text">Помогаем в коммуникации на этапе рассмотрения и поддерживаем исполнение.</p>
+            </div>
+          </li>
+
+          <li class="step">
+            <span class="step-num">5</span>
+            <div>
+              <h3 class="step-title" data-i18n="process.s5.title">Поддержка</h3>
+              <p class="step-text" data-i18n="process.s5.text">Дальнейшие рекомендации по управлению и последующему обслуживанию.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- FAQ (accordion) -->
+    <section id="faq" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title" data-i18n="faq.title">FAQ</h2>
+          <p class="section-desc" data-i18n="faq.desc">Коротко и по сути.</p>
+        </div>
+
+        <div class="accordion" aria-label="Frequently asked questions">
+          <div class="acc-item">
+            <button class="acc-btn" type="button" aria-expanded="false" aria-controls="faq1">
+              <span data-i18n="faq.q1">Вы выдаете кредиты напрямую?</span>
+              <span class="acc-icon" aria-hidden="true">+</span>
+            </button>
+            <div id="faq1" class="acc-panel" role="region" aria-label="Answer">
+              <p data-i18n="faq.a1">
+                Нет. Мы не являемся кредитором. Мы сопровождаем процесс подбора и подачи заявки. Итоговое решение принимает финансовая организация.
+              </p>
+            </div>
+          </div>
+
+          <div class="acc-item">
+            <button class="acc-btn" type="button" aria-expanded="false" aria-controls="faq2">
+              <span data-i18n="faq.q2">Одобрение гарантировано?</span>
+              <span class="acc-icon" aria-hidden="true">+</span>
+            </button>
+            <div id="faq2" class="acc-panel" role="region" aria-label="Answer">
+              <p data-i18n="faq.a2">
+                Гарантия невозможна. Решение принимается банками, но мы максимизируем шансы на успех с помощью стратегии.
+              </p>
+            </div>
+          </div>
+
+          <div class="acc-item">
+            <button class="acc-btn" type="button" aria-expanded="false" aria-controls="faq3">
+              <span data-i18n="faq.q3">Какая информация нужна?</span>
+              <span class="acc-icon" aria-hidden="true">+</span>
+            </button>
+            <div id="faq3" class="acc-panel" role="region" aria-label="Answer">
+              <p data-i18n="faq.a3">
+                Обычно требуются: тип визы, подтверждение дохода и статус занятости. Детали зависят от конкретного случая.
+              </p>
+            </div>
+          </div>
+
+          <div class="acc-item">
+            <button class="acc-btn" type="button" aria-expanded="false" aria-controls="faq4">
+              <span data-i18n="faq.q4">Персональные данные?</span>
+              <span class="acc-icon" aria-hidden="true">+</span>
+            </button>
+            <div id="faq4" class="acc-panel" role="region" aria-label="Answer">
+              <p data-i18n="faq.a4">
+                Персональные данные используются только для целей подбора и консультации в минимально необходимом объеме.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="container stack">
+        <div class="footer-box">
+          <p class="footer-name" data-i18n="company.name">스탠다드파트너스(Standard Partners Co., LTD)</p>
+          <p class="footer-meta">
+            <span data-i18n="company.address">인천광역시 남동구 남동서로236번길 30, 2층</span>
+          </p>
+          <p class="footer-meta">
+            <a class="link" href="mailto:srandardpartnerskor@gmail.com">srandardpartnerskor@gmail.com</a>
+          </p>
+          <p class="footer-meta">
+            <span data-i18n="footer.foundedLabel">Основано</span>:
+            <span data-i18n="company.founded">2023년 3월 21일</span>
+          </p>
+
+          <div style="height:10px"></div>
+
+          <p class="footer-meta" style="margin:0 0 8px;font-weight:900;color:rgba(11,27,58,.85)" data-i18n="footer.legalTitle">Юридическое уведомление</p>
+          <p class="footer-meta" data-i18n="footer.disclaimer">
+            Решение о выдаче кредита и его условия полностью зависят от критериев банка. Мы не являемся кредитной организацией.
+          </p>
+          <p class="footer-meta" data-i18n="footer.privacy">
+            Ваши персональные данные используются исключительно для целей подбора финансовых решений.
+          </p>
+        </div>
+
+        <div class="footer-bottom">
+          <p style="margin:0">© <span id="year"></span> Standard Partners.</p>
+          <p style="margin:0">All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    (function () {
+      const state = { lang: "ru" };
+
+      const i18n = {
+        ru: {
+          "nav.home":"Главная",
+          "nav.trust":"Доверие",
+          "nav.about":"О компании",
+          "nav.services":"Направления",
+          "nav.partners":"Партнеры",
+          "nav.strengths":"Преимущества",
+          "nav.process":"Этапы",
+          "nav.faq":"FAQ",
+          "nav.title":"Навигация",
+
+          "hero.eyebrow":"Центр финансовых решений",
+          "hero.title":"Финансовые решения для иностранцев в Корее",
+          "hero.subtitle":"Standard Partners сопровождает диагностику, стратегию, подбор финансовой организации и поддержку до выдачи. Мы работаем структурно и прозрачно.",
+          "hero.ctaPrimary":"Запросить консультацию",
+          "hero.ctaSecondary":"Посмотреть этапы",
+          "hero.proof1.value":"55 млрд+ ₩",
+          "hero.proof1.label":"Опыт PF-брокериджа",
+          "hero.proof2.value":"Регистрация",
+          "hero.proof2.label":"Прозрачная работа",
+          "hero.media1.title":"Профессиональное сопровождение",
+          "hero.media1.text":"Структурный подход для сложных кейсов",
+          "hero.media2.title":"Выбор на основе данных",
+          "hero.media2.text":"Сравнение условий и диагностика одобрения",
+
+          "trust.title":"Почему нам доверяют",
+          "trust.desc":"Структура, практический опыт и прозрачная коммуникация.",
+          "trust.c1.title":"Официальная регистрация",
+          "trust.c1.text":"Работаем как зарегистрированная компания с прозрачными процедурами.",
+          "trust.c2.title":"Опыт PF-структурирования",
+          "trust.c2.text":"Компетенции сформированы через сделки PF-финансирования.",
+          "trust.c3.title":"Стратегия для иностранцев",
+          "trust.c3.text":"Учитываем визу, доход, занятость и кредитную историю комплексно.",
+          "trust.c4.title":"Сеть партнеров",
+          "trust.c4.text":"Практическая работа с несколькими организациями для реалистичного подбора.",
+
+          "about.title":"Информация о компании",
+          "about.desc":"Официальные данные и канал связи.",
+          "about.k1":"Компания",
+          "about.k2":"Адрес",
+          "about.k3":"Email",
+          "about.k4":"Дата основания",
+          "about.copy":"Копировать",
+          "about.disclaimerTitle":"Важно",
+          "about.disclaimerText":"Мы не являемся кредитором и не принимаем окончательное решение об одобрении. Решение зависит от банка.",
+          "about.capTitle":"Структурно и комплаентно",
+          "about.capText":"Понятные шаги, помощь с документами и практическая поддержка.",
+
+          "services.title":"Направления деятельности",
+          "services.desc":"Два ключевых направления с упором на стратегию.",
+          "services.s1.title":"PF-финансирование (2023-2025)",
+          "services.s1.text":"Проектирование структуры финансирования и консалтинг по привлечению средств. Совокупный объем посредничества - более 55 млрд вон. Опыт согласования условий и доведения до исполнения.",
+          "services.s1.b1":"Проектирование структуры",
+          "services.s1.b2":"Поддержка переговоров",
+          "services.s1.b3":"Координация исполнения",
+          "services.s2.title":"Кредиты для иностранцев (с 2 полугодия 2025)",
+          "services.s2.text":"Поддержка в получении беззалоговых и залоговых кредитов. Мы максимизируем вероятность одобрения с помощью стратегии.",
+          "services.s2.b1":"Залоговые / Беззалоговые",
+          "services.s2.b2":"Анализ визы",
+          "services.s2.b3":"Стратегия подачи",
+          "services.mediaTitle":"Сравнение условий",
+          "services.mediaText":"Подбор на базе критериев и документов.",
+
+          "partners.title":"Партнерские организации",
+          "partners.desc":"Сравниваем условия, оцениваем вероятность одобрения и подбираем вариант.",
+          "partners.p1":"Jeonbuk Bank",
+          "partners.p2":"NongHyup Bank",
+          "partners.p3":"Suhyup",
+          "partners.p4":"Credit Union",
+          "partners.p5":"Korea Capital",
+          "partners.note":"Мы работаем с несколькими банками для обеспечения оптимального подбора.",
+
+          "strengths.title":"Преимущества",
+          "strengths.desc":"Практические возможности, основанные на реальном опыте.",
+          "strengths.c1.title":"PF-структурирование",
+          "strengths.c1.text":"Мы проектируем потоки на основе подхода проектного финансирования.",
+          "strengths.c2.title":"Стратегия для иностранцев",
+          "strengths.c2.text":"Комплексная оценка визы, дохода и кредитной истории анализируется стратегически.",
+          "strengths.c3.title":"Сеть контактов",
+          "strengths.c3.text":"Реалистичная оценка и подбор на основе практической сети сотрудничества.",
+          "strengths.c4.title":"Прозрачность",
+          "strengths.c4.text":"Легальная и прозрачная деятельность зарегистрированной компании.",
+          "strengths.visionTitle":"Миссия",
+          "strengths.visionText":"Безопасная финансовая платформа, соединяющая иностранных клиентов с институтами.",
+
+          "process.title":"Этапы работы",
+          "process.desc":"Пять этапов от консультации до выдачи.",
+          "process.s1.title":"Сбор информации",
+          "process.s1.text":"Фиксируем цель, ограничения и ключевые параметры кейса.",
+          "process.s2.title":"Диагностика",
+          "process.s2.text":"Формируем стратегию с учетом критериев различных организаций.",
+          "process.s3.title":"Подбор",
+          "process.s3.text":"Подбираем варианты и предоставляем руководство по документам.",
+          "process.s4.title":"Исполнение",
+          "process.s4.text":"Помогаем в коммуникации на этапе рассмотрения и исполнения.",
+          "process.s5.title":"Поддержка",
+          "process.s5.text":"Рекомендации по управлению и последующему обслуживанию.",
+
+          "faq.title":"FAQ",
+          "faq.q1":"Вы выдаете кредиты напрямую?",
+          "faq.a1":"Нет, мы сопровождаем процесс подбора и подачи заявки.",
+          "faq.q2":"Одобрение гарантировано?",
+          "faq.a2":"Решается банками. Мы максимизируем шансы на успех.",
+          "faq.q3":"Какая информация нужна?",
+          "faq.a3":"Виза, подтверждение дохода, статус занятости.",
+          "faq.q4":"Персональные данные?",
+          "faq.a4":"Используются только для подбора в минимально необходимом объеме.",
+
+          "footer.foundedLabel":"Основано",
+          "footer.legalTitle":"Уведомление",
+          "footer.disclaimer":"Решение зависит от критериев банка.",
+          "footer.privacy":"Персональные данные используются только для целей подбора.",
+
+          "company.name":"스탠다드파트너스(Standard Partners Co., LTD)",
+          "company.address":"인천광역시 남동구 남동서로236번길 30, 2층",
+          "company.founded":"2023년 3월 21일"
+        },
+
+        ko: {
+          "nav.title":"내비게이션",
+          "nav.home":"홈",
+          "nav.trust":"신뢰",
+          "nav.about":"회사소개",
+          "nav.services":"사업영역",
+          "nav.partners":"제휴기관",
+          "nav.strengths":"경쟁력",
+          "nav.process":"진행절차",
+          "nav.faq":"FAQ",
+
+          "hero.eyebrow":"외국인 전문 금융 솔루션 센터",
+          "hero.title":"한국 거주 외국인을 위한 금융 솔루션",
+          "hero.subtitle":"Standard Partners는 상담, 승인 가능성 진단, 금융기관 매칭, 실행까지 전 과정을 구조적으로 지원합니다. 금융사별 기준을 분석해 승인 가능성을 높이는 전략형 중개를 제공합니다.",
+          "hero.ctaPrimary":"상담 요청하기",
+          "hero.ctaSecondary":"진행 절차 보기",
+          "hero.proof1.value":"550억+ ₩",
+          "hero.proof1.label":"PF 중개 실적",
+          "hero.proof2.value":"정식 등록",
+          "hero.proof2.label":"투명한 운영",
+          "hero.media1.title":"전문 동행",
+          "hero.media1.text":"복잡한 케이스도 구조적으로 지원",
+          "hero.media2.title":"데이터 기반 매칭",
+          "hero.media2.text":"조건 비교와 승인 가능성 진단",
+
+          "trust.title":"신뢰를 만드는 기준",
+          "trust.desc":"명확한 프로세스, 실무 경험, 투명한 커뮤니케이션.",
+          "trust.c1.title":"정식 등록 법인 운영",
+          "trust.c1.text":"등록된 법인으로 투명한 절차에 따라 운영합니다.",
+          "trust.c2.title":"PF 경험 기반 역량",
+          "trust.c2.text":"대규모 PF 중개 경험을 통해 구조 설계 역량을 축적했습니다.",
+          "trust.c3.title":"외국인 심사 전략",
+          "trust.c3.text":"체류자격, 소득 구조, 신용 이력 등을 종합 분석합니다.",
+          "trust.c4.title":"금융기관 네트워크",
+          "trust.c4.text":"다수 기관과의 실무 협업 경험으로 현실적인 판단을 제공합니다.",
+
+          "about.title":"회사 정보",
+          "about.desc":"공식 정보 및 연락 채널을 확인하세요.",
+          "about.k1":"회사명",
+          "about.k2":"주소",
+          "about.k3":"이메일",
+          "about.k4":"설립일",
+          "about.copy":"주소 복사",
+          "about.disclaimerTitle":"안내",
+          "about.disclaimerText":"당사는 금융기관이 아니며 대출 실행 및 최종 승인 권한이 없습니다. 심사 결과 및 조건은 금융기관 기준에 따릅니다.",
+          "about.capTitle":"구조적이고 합법적인 지원",
+          "about.capText":"명확한 단계, 서류 가이드, 실무 기반 커뮤니케이션.",
+
+          "services.title":"사업 영역",
+          "services.desc":"전략 중심의 2개 핵심 영역.",
+          "services.s1.title":"부동산 PF 금융 중개(2023-2025)",
+          "services.s1.text":"부동산 건설 및 개발 관련 프로젝트 파이낸싱 구조 설계 및 자금 조달 컨설팅을 수행하였으며, 누적 550억 원 이상의 중개 실적을 보유하고 있습니다. 복잡한 자금 구조를 설계하고 금융기관과의 협의를 통해 실행까지 연결하는 역량을 축적해 왔습니다.",
+          "services.s1.b1":"자금 구조 설계",
+          "services.s1.b2":"조건 협의 지원",
+          "services.s1.b3":"실행까지 연결",
+          "services.s2.title":"외국인 대출 전문중개(2025년 하반기 이후)",
+          "services.s2.text":"외국인 개인 및 사업자를 대상으로 신용대출 자동차 담보대출 부동산 담보대출 사업자 자금 구조 설계 등을 수행하며, 금융사별 심사 기준을 분석하여 승인 가능성을 극대화하는 전략형 중개를 진행합니다.",
+          "services.s2.b1":"신용/담보 옵션 제시",
+          "services.s2.b2":"비자/소득/신용 종합 분석",
+          "services.s2.b3":"금융사별 대응 전략",
+
+          "partners.title":"주요 제휴 금융기관",
+          "partners.desc":"금리 비교, 조건 분석, 승인 가능성 진단, 최적 매칭을 제공합니다.",
+          "partners.p1":"전북은행",
+          "partners.p2":"농협은행",
+          "partners.p3":"수협",
+          "partners.p4":"신협",
+          "partners.p5":"한국캐피탈",
+          "partners.note":"다수 금융기관과의 협업을 통해 금리 비교 조건 분석 승인 가능성 진단 고객에게 최적 금융사 매칭을 제공하며 고객의 대출이 안전하게 실행될 수 있도록 처음부터 끝까지 함께합니다.",
+
+          "strengths.title":"차별화 경쟁력",
+          "strengths.desc":"실무 기반 구조 설계와 전략형 중개.",
+          "strengths.c1.title":"PF 경험 기반 자금 구조 설계",
+          "strengths.c1.text":"대규모 PF 경험을 바탕으로 자금 흐름을 구조적으로 설계합니다.",
+          "strengths.c2.title":"외국인 금융 심사 전략 전문성",
+          "strengths.c2.text":"체류자격, 소득 구조, 신용 이력 등을 종합 분석해 금융사별 대응 전략을 수립합니다.",
+          "strengths.c3.title":"금융기관 네트워크",
+          "strengths.c3.text":"다수 금융기관과의 실무 협업 경험을 기반으로 현실적인 승인 가능성을 판단합니다.",
+          "strengths.c4.title":"정식 등록 법인 운영",
+          "strengths.c4.text":"등록된 대부중개 법인으로서 합법적이고 투명한 구조로 운영됩니다.",
+          "strengths.visionTitle":"비전",
+          "strengths.visionText":"Standard Partners 는 외국인 금융 시장의 전문 중개 플랫폼 구축을 목표로 합니다. 금융 접근성이 낮은 외국인 고객에게 안전하고 구조화된 금융 솔루션을 제공하며, 금융사와 차주를 연결하는 신뢰 기반의 전문 플랫폼으로 성장하고자 합니다.",
+
+          "process.title":"진행 절차",
+          "process.desc":"상담부터 실행까지 5단계로 안내합니다.",
+          "process.s1.title":"상담 및 정보 확인",
+          "process.s1.text":"요청 목적과 핵심 조건을 확인합니다.",
+          "process.s2.title":"승인 가능성 진단 및 전략 설계",
+          "process.s2.text":"금융사별 기준을 반영해 대응 전략을 수립합니다.",
+          "process.s3.title":"금융기관 매칭 및 서류 가이드",
+          "process.s3.text":"적합한 옵션을 제시하고 서류 준비를 안내합니다.",
+          "process.s4.title":"심사 대응 및 실행 지원",
+          "process.s4.text":"심사 과정 커뮤니케이션을 지원하고 실행까지 동행합니다.",
+          "process.s5.title":"사후관리(필요 시)",
+          "process.s5.text":"추가 안내 및 관리가 필요한 경우 지원합니다.",
+
+          "faq.title":"자주 묻는 질문",
+          "faq.desc":"핵심만 정리했습니다.",
+          "faq.q1":"대출을 직접 실행하나요?",
+          "faq.a1":"아니요. 당사는 금융기관이 아니며 분석-매칭-서류-진행 지원을 제공합니다. 최종 승인 및 조건은 금융기관 기준입니다.",
+          "faq.q2":"승인 보장이 되나요?",
+          "faq.a2":"승인은 보장할 수 없습니다. 다만 금융사별 기준 분석과 전략으로 승인 가능성을 높입니다.",
+          "faq.q3":"진단에 필요한 정보는 무엇인가요?",
+          "faq.a3":"보통 체류자격/만료일, 소득 증빙, 재직 또는 사업 정보, 기본 신용 정보가 필요합니다.",
+          "faq.q4":"개인정보는 어떻게 처리하나요?",
+          "faq.a4":"상담과 매칭 목적의 최소 범위 내에서만 활용하며, 신중하게 관리합니다.",
+
+          "company.name":"스탠다드파트너스(Standard Partners Co., LTD)",
+          "company.address":"인천광역시 남동구 남동서로236번길 30, 2층",
+          "company.founded":"2023년 3월 21일"
+        }
+      };
+
+      // Header elevate
+      const header = document.querySelector(".site-header");
+      const onScroll = () => header && header.setAttribute("data-elevate", window.scrollY > 8 ? "true" : "false");
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+
+      // Year
+      const yearEl = document.getElementById("year");
+      if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
+      // Mobile menu toggle (vertical menu)
+      const navToggle = document.querySelector(".nav-toggle");
+      const navMenu = document.getElementById("navMenu");
+
+      const closeNav = () => {
+        if (!navToggle || !navMenu) return;
+        navMenu.classList.remove("open");
+        navToggle.setAttribute("aria-expanded", "false");
+      };
+      const openNav = () => {
+        if (!navToggle || !navMenu) return;
+        navMenu.classList.add("open");
+        navToggle.setAttribute("aria-expanded", "true");
+      };
+
+      if (navToggle && navMenu) {
+        navToggle.addEventListener("click", () => {
+          const isOpen = navMenu.classList.contains("open");
+          isOpen ? closeNav() : openNav();
+        });
+
+        document.querySelectorAll(".nav-link").forEach((a) => a.addEventListener("click", () => closeNav()));
+
+        document.addEventListener("click", (e) => {
+          const t = e.target;
+          if (!t) return;
+          if (navMenu.classList.contains("open")) {
+            const inside = navMenu.contains(t) || navToggle.contains(t);
+            if (!inside) closeNav();
+          }
+        });
+
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") closeNav();
+        });
+      }
+
+      // Smooth scroll offset for sticky header
+      const scrollToHash = (hash) => {
+        const el = document.querySelector(hash);
+        if (!el) return;
+        const headerH = header ? header.offsetHeight : 0;
+        const y = el.getBoundingClientRect().top + window.scrollY - headerH - 8;
+        window.scrollTo({ top: y, behavior: "smooth" });
+      };
+
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener("click", (e) => {
+          const href = a.getAttribute("href");
+          if (!href || href.length < 2) return;
+          if (document.querySelector(href)) {
+            e.preventDefault();
+            closeNav();
+            history.replaceState(null, "", href);
+            scrollToHash(href);
+          }
+        });
+      });
+
+      // Accordion
+      document.querySelectorAll(".acc-item").forEach((item) => {
+        const btn = item.querySelector(".acc-btn");
+        const panel = item.querySelector(".acc-panel");
+        if (!btn || !panel) return;
+
+        btn.addEventListener("click", () => {
+          const expanded = btn.getAttribute("aria-expanded") === "true";
+          btn.setAttribute("aria-expanded", expanded ? "false" : "true");
+          panel.classList.toggle("open", !expanded);
+          const icon = btn.querySelector(".acc-icon");
+          if (icon) icon.textContent = expanded ? "+" : "–";
+        });
+      });
+
+      // Copy address
+      const copyBtn = document.getElementById("copyAddressBtn");
+      const addrEl = document.getElementById("companyAddress");
+      const hintEl = document.getElementById("copyHint");
+
+      const setCopyHint = (text) => {
+        if (!hintEl) return;
+        hintEl.textContent = text;
+        window.setTimeout(() => { hintEl.textContent = ""; }, 2000);
+      };
+
+      if (copyBtn && addrEl) {
+        copyBtn.addEventListener("click", async () => {
+          const text = (addrEl.textContent || "").trim();
+          try {
+            await navigator.clipboard.writeText(text);
+            setCopyHint(state.lang === "ko" ? "복사 완료" : "Скопировано");
+          } catch {
+            setCopyHint(state.lang === "ko" ? "복사 실패" : "Не удалось ско피ровать");
+          }
+        });
+      }
+
+      // Language apply (NO persistence to URL to avoid SecurityError in sandbox)
+      const applyLang = (lang) => {
+        const dict = i18n[lang] || i18n.ru;
+        state.lang = lang;
+
+        document.documentElement.setAttribute("lang", lang);
+
+        document.querySelectorAll(".lang-tab").forEach((t) => {
+          const isSelected = t.getAttribute("data-lang") === lang;
+          t.setAttribute("aria-selected", isSelected ? "true" : "false");
+          t.tabIndex = isSelected ? 0 : -1;
+        });
+
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const key = el.getAttribute("data-i18n");
+          if (!key) return;
+          const value = dict[key];
+          if (typeof value === "string") el.textContent = value;
+        });
+
+        if (hintEl) hintEl.textContent = "";
+      };
+
+      const initLang = () => {
+        let lang = "ru";
+        try {
+          const url = new URL(window.location.href);
+          const param = url.searchParams.get("lang");
+          if (param === "ko") lang = "ko";
+        } catch (e) {}
+        applyLang(lang);
+      };
+
+      document.querySelectorAll(".lang-tab").forEach((btn) => {
+        btn.addEventListener("click", () => applyLang(btn.getAttribute("data-lang") || "ru"));
+        btn.addEventListener("keydown", (e) => {
+          const tabs = Array.from(document.querySelectorAll(".lang-tab"));
+          const idx = tabs.indexOf(btn);
+          if (e.key === "ArrowRight") {
+            e.preventDefault();
+            const next = tabs[(idx + 1) % tabs.length];
+            next.focus();
+            applyLang(next.getAttribute("data-lang") || "ru");
+          }
+          if (e.key === "ArrowLeft") {
+            e.preventDefault();
+            const prev = tabs[(idx - 1 + tabs.length) % tabs.length];
+            prev.focus();
+            applyLang(prev.getAttribute("data-lang") || "ru");
+          }
+        });
+      });
+
+      initLang();
+    })();
+  </script>
+</body>
+</html>
