@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Standard Partners | 스탠다드파트너스 (Mobile)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com/"></script>
+    <!-- React & ReactDOM CDN -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <!-- Babel CDN for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts: Noto Sans KR & Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Noto Sans KR', 'Roboto', sans-serif;
+            scroll-behavior: smooth;
+            -webkit-tap-highlight-color: transparent;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeIn {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+        .hero-slide {
+            transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+        }
+        /* Lucide 아이콘 크기 고정 */
+        [data-lucide] {
+            width: 18px;
+            height: 18px;
+        }
+        .process-icon [data-lucide] {
+            width: 32px;
+            height: 32px;
+        }
+        .hero-nav-btn {
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        /* 모바일 최적화: 가로 스크롤 방지 및 너비 제한 */
+        .mobile-container {
+            max-width: 640px;
+            margin: 0 auto;
+            position: relative;
+            background: white;
+        }
+        /* 단어 단위 줄바꿈 방지 */
+        .keep-all {
+            word-break: keep-all;
+            overflow-wrap: break-word;
+        }
+        /* 가로 스크롤바 숨기기 */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+
+        const App = () => {
+            const [lang, setLang] = useState('ko');
+            const [activeTab, setActiveTab] = useState('home');
+            const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+            const [currentSlide, setCurrentSlide] = useState(0);
+
+            const slides = [
+                { img: "https://iili.io/qBTDpQ1.png", ko: "Standard Partners\n고객을 위한 금융 솔루션을\n가장 정확하게 연결하는 파트너", ru: "Standard Partners — ваш партнер,\nобеспечивающий точный подбор\nфинансовых решений для каждого клиента" },
+                { img: "https://iili.io/q1kJpQ1.jpg", ko: "다양한 금융 네트워크를 통해\n고객 상황에 꼭 맞는\n최적의 대출 상품을 연결합니다", ru: "Мы подбираем оптимальные\nкредитные продукты,\nсоответствующие вашей ситуации" },
+                { img: "https://iili.io/q1kqz67.jpg", ko: "단순한 대출 연결을 넘어\n고객에게 맞는 최적의\n금융 전략을 함께 설계합니다", ru: "Мы разрабатываем индивидуальную\nфинансовую стратегию\nспециально для вас" },
+                { img: "https://iili.io/q1kIRf4.jpg", ko: "부동산 PF 550억 경험의\n전문적인 금융 구조 설계 역량을\n풍부하게 보유하고 있습니다", ru: "Экспертные навыки в проектировании\nструктур на базе опыта PF\nобъемом 55 млрд вон" },
+                { img: "https://iili.io/q1kvM0b.jpg", ko: "외국인 금융 규정에 대한\n깊은 이해를 바탕으로\n특화된 금융 서비스를 제공합니다", ru: "Специализированные услуги для\nиностранцев на основе понимания\nместного законодательства" },
+                { img: "https://iili.io/q1vH0hP.jpg", ko: "외국인 대상 신용 및 자동차 대출\n중개 분야에 특화된\n전문 인력이 상담을 도와드립니다", ru: "Индивидуальные консультации по\nкредитам для иностранцев от\nквалифицированных специалистов" },
+                { img: "https://iili.io/q1vKzQV.jpg", ko: "접수부터 실행까지\n체계적인 프로세스를 통해\n안정적인 대출 진행을 지원합니다", ru: "Надежное сопровождение процесса\nкредитования благодаря нашей\nчетко выстроенной системе" },
+                { img: "https://iili.io/q1vIou9.png", ko: "더 나은 금융 선택을 위한\n가장 가까운 금융 파트너,\n스탠다드 파트너스입니다", ru: "Standard Partners — ваш самый\nнадежный партнер для принятия\nверных финансовых решений" }
+            ];
+
+            const t = {
+                ko: {
+                    nav: ["회사소개", "VISION", "사업영역", "파트너쉽", "진행과정"],
+                    consultBtn: "상담신청",
+                    repName: "김민정",
+                    aboutTitle: "안녕하십니까. 스탠다드파트너스 공식 홈페이지를 방문해 주셔서 감사합니다.",
+                    aboutP1: "스탠다드파트너스는 고객에게 가장 적합한 금융 솔루션을 제공하기 위해 설립된 금융 중개 전문 기업입니다. 다양한 금융기관과의 네트워크를 통해 고객 맞춤형 금융 상품을 연결합니다.",
+                    visionMain: "외국인 금융 서비스 분야에서 신뢰 받는 전문 금융 플랫폼 기업이 되는 것을 목표로 합니다.",
+                    vision1: "외국인 금융서비스 선도 기업",
+                    vision2: "글로벌 네트워크 기반 플랫폼",
+                    vision3: "외국인 신뢰도 1위 기업",
+                    partnerTitle: "주요 제휴 금융기관",
+                    process1: "대출상담",
+                    process2: "심사신청",
+                    process3: "결과안내",
+                    process4: "대출실행"
+                },
+                ru: {
+                    nav: ["О компании", "ВИДЕНИЕ", "Направления", "Партнерство", "Процесс"],
+                    consultBtn: "Заявка",
+                    repName: "К임 Мин Чжон",
+                    aboutTitle: "Здравствуйте. Благодарим вас за посещение официального сайта Standard Partners.",
+                    aboutP1: "Standard Partners — это финансово-посредническая компания, созданная для предоставления клиентам наиболее подходящих финансовых решений.",
+                    visionMain: "Наша цель — стать ведущей финансовой платформой, которой доверяют иностранные клиенты.",
+                    vision1: "Лидер в услугах для иностранцев",
+                    vision2: "Глобальная сетевая платформа",
+                    vision3: "Компания №1 по доверию",
+                    partnerTitle: "Финансовые партнеры",
+                    process1: "Консультация",
+                    process2: "Подача заявки",
+                    process3: "Результат",
+                    process4: "Выплата"
+                }
+            };
+
+            const navIds = ['about', 'vision', 'business', 'partnership', 'process'];
+
+            useEffect(() => {
+                const timer = setInterval(() => setCurrentSlide((prev) => (prev + 1) % slides.length), 5000);
+                return () => clearInterval(timer);
+            }, [slides.length]);
+
+            useEffect(() => {
+                if (window.lucide) window.lucide.createIcons();
+            }, [activeTab, mobileMenuOpen, lang, currentSlide]);
+
+            const navigateTo = (id) => {
+                setActiveTab(id);
+                setMobileMenuOpen(false);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
+
+            return (
+                <div className="mobile-container min-h-screen shadow-2xl border-x border-slate-100">
+                    {/* Integrated Single Line Header */}
+                    <nav className="fixed top-0 max-w-[640px] w-full bg-white z-50 border-b border-gray-100 h-16 flex items-center px-3 justify-between">
+                        <div className="flex items-center space-x-2 overflow-hidden flex-1">
+                            <img src="https://iili.io/qKNSOUx.png" alt="Logo" className="h-8 cursor-pointer object-contain flex-shrink-0" onClick={() => navigateTo('home')} />
+                            
+                            {/* Integrated Inline Menu */}
+                            <div className="flex items-center overflow-x-auto hide-scrollbar space-x-3 px-2 border-l border-slate-100 ml-2">
+                                {navIds.map((id, i) => (
+                                    <button 
+                                        key={id} 
+                                        onClick={() => navigateTo(id)}
+                                        className={`flex-shrink-0 text-[11px] font-black transition-all ${activeTab === id ? 'text-[#800020]' : 'text-slate-400'}`}
+                                    >
+                                        {lang === 'ko' ? t.ko.nav[i] : t.ru.nav[i]}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+                        
+                        <div className="flex items-center space-x-1.5 flex-shrink-0 ml-2">
+                            {/* Language Switcher Buttons with full names */}
+                            <div className="flex bg-slate-100 p-1 rounded-full">
+                                <button 
+                                    onClick={() => setLang('ko')} 
+                                    className={`px-2 py-1 text-[9px] font-bold rounded-full transition-all ${lang === 'ko' ? 'bg-[#800020] text-white shadow-sm' : 'text-slate-400'}`}
+                                >
+                                    한국어
+                                </button>
+                                <button 
+                                    onClick={() => setLang('ru')} 
+                                    className={`px-2 py-1 text-[9px] font-bold rounded-full transition-all ${lang === 'ru' ? 'bg-[#800020] text-white shadow-sm' : 'text-slate-400'}`}
+                                >
+                                    Русский
+                                </button>
+                            </div>
+                            
+                            <a href="https://standardpartners.github.io/home/" target="_blank" className="bg-[#800020] text-white px-2.5 py-1.5 rounded-full text-[10px] font-black shadow-md flex items-center justify-center">
+                                {t[lang].consultBtn}
+                            </a>
+                            <button className="p-1 text-slate-700" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+                                <i data-lucide={mobileMenuOpen ? "x" : "menu"}></i>
+                            </button>
+                        </div>
+                    </nav>
+
+                    {/* Mobile Menu Overlay */}
+                    {mobileMenuOpen && (
+                        <div className="fixed inset-0 top-16 max-w-[640px] mx-auto bg-white z-40 px-6 py-6 animate-fadeIn">
+                            <div className="flex flex-col space-y-4">
+                                {t.ko.nav.map((label, i) => (
+                                    <button key={i} onClick={() => navigateTo(navIds[i])} 
+                                            className="text-left text-lg font-bold border-b border-slate-50 pb-3 text-slate-800 flex justify-between items-center">
+                                        {lang === 'ko' ? label : t.ru.nav[i]}
+                                        <i data-lucide="chevron-right" className="text-slate-300"></i>
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Main Content */}
+                    <main className="pt-16">
+                        {activeTab === 'home' && (
+                            <section className="relative h-[calc(100vh-16px)] overflow-hidden bg-black">
+                                {slides.map((slide, i) => (
+                                    <div key={i} className={`absolute inset-0 hero-slide ${i === currentSlide ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}`}>
+                                        <div className="absolute inset-0 bg-cover bg-center" style={{backgroundImage: `linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.65)), url(${slide.img})`}}></div>
+                                        <div className="relative h-full flex flex-col items-center justify-center text-center px-8">
+                                            <h1 className="text-white text-xl md:text-2xl font-black leading-[1.6] drop-shadow-xl keep-all whitespace-pre-line">
+                                                {lang === 'ko' ? slide.ko : slide.ru}
+                                            </h1>
+                                        </div>
+                                    </div>
+                                ))}
+                                
+                                <button onClick={() => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)} className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full hero-nav-btn text-white flex items-center justify-center z-20">
+                                    <i data-lucide="chevron-left"></i>
+                                </button>
+                                <button onClick={() => setCurrentSlide((prev) => (prev + 1) % slides.length)} className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full hero-nav-btn text-white flex items-center justify-center z-20">
+                                    <i data-lucide="chevron-right"></i>
+                                </button>
+
+                                <div className="absolute bottom-16 left-1/2 -translate-x-1/2 flex space-x-2 z-20">
+                                    {slides.map((_, dotI) => (
+                                        <button key={dotI} onClick={() => setCurrentSlide(dotI)} className={`h-1.5 rounded-full transition-all duration-300 ${dotI === currentSlide ? 'bg-white w-10' : 'bg-white/30 w-3'}`}></button>
+                                    ))}
+                                </div>
+                            </section>
+                        )}
+
+                        {activeTab === 'about' && (
+                            <section className="py-12 px-6 animate-fadeIn">
+                                <div className="flex flex-col items-center text-center mb-10">
+                                    <img src="https://iili.io/q18ahDQ.png" className="w-44 h-44 rounded-[2.5rem] object-cover shadow-xl border-4 border-white mb-6" />
+                                    <h2 className="text-lg font-black text-[#800020] leading-snug mb-8 keep-all">{t[lang].aboutTitle}</h2>
+                                    <div className="space-y-4 text-slate-600 text-[13px] leading-relaxed text-left keep-all">
+                                        <p>{t[lang].aboutP1}</p>
+                                        <p>{t[lang].aboutP3}</p>
+                                    </div>
+                                    <p className="w-full text-right mt-8 font-black text-slate-900 text-sm">{lang === 'ko' ? '스탠다드파트너스 대표 김민정' : `CEO, ${t[lang].repName}`}</p>
+                                </div>
+                                <div className="bg-slate-100 p-5 rounded-2xl space-y-2.5 text-[11px]">
+                                    <p className="flex justify-between"><span>법인명</span> <b>(주)스탠다드파트너스</b></p>
+                                    <p className="flex justify-between"><span>설립일</span> <b>2023. 03. 21</b></p>
+                                    <p className="flex justify-between"><span>등록기관</span> <b>인천 남동구청</b></p>
+                                </div>
+                            </section>
+                        )}
+
+                        {activeTab === 'vision' && (
+                            <section className="py-12 px-6 bg-slate-50 animate-fadeIn">
+                                <div className="text-center mb-10">
+                                    <h2 className="text-2xl font-black mb-2">VISION</h2>
+                                    <div className="w-8 h-1 bg-[#800020] mx-auto mb-6 rounded-full"></div>
+                                    <p className="text-[13px] font-bold text-slate-700 leading-relaxed mb-10 italic keep-all px-4">"{t[lang].visionMain}"</p>
+                                    <div className="space-y-3">
+                                        {[
+                                            {title: t[lang].vision1, img: "https://iili.io/q18PvJ1.jpg"},
+                                            {title: t[lang].vision2, img: "https://iili.io/q18tol4.jpg"},
+                                            {title: t[lang].vision3, img: "https://iili.io/q18tLg4.jpg"}
+                                        ].map((v, i) => (
+                                            <div key={i} className="bg-white p-4 rounded-xl shadow-sm flex items-center space-x-4 border border-slate-100">
+                                                <img src={v.img} className="w-10 h-10 rounded-lg object-cover" />
+                                                <h3 className="font-black text-[13px] text-[#800020] text-left">{v.title}</h3>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </section>
+                        )}
+
+                        {activeTab === 'business' && (
+                            <section className="py-12 px-6 animate-fadeIn">
+                                <div className="text-center mb-8">
+                                    <h2 className="text-2xl font-black mb-4">사업영역</h2>
+                                </div>
+                                <div className="space-y-6">
+                                    {[
+                                        {title: "외국인 대출 중개", img: "https://iili.io/q180g5u.jpg"},
+                                        {title: "부동산 PF 자문", img: "https://iili.io/q18wbGs.png"},
+                                        {title: "금융 구조 설계", img: "https://iili.io/q18Oyp2.jpg"}
+                                    ].map((b, i) => (
+                                        <div key={i} className="bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm">
+                                            <img src={b.img} className="h-44 w-full object-cover" />
+                                            <div className="p-5">
+                                                <h3 className="text-lg font-black text-[#800020]">{b.title}</h3>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </section>
+                        )}
+
+                        {activeTab === 'partnership' && (
+                            <section className="py-12 px-6 bg-slate-50 animate-fadeIn text-center">
+                                <h2 className="text-2xl font-black mb-2 uppercase tracking-tight">Partners</h2>
+                                <p className="text-[13px] text-slate-500 mb-8 px-4 keep-all">{t[lang].partnerTitle}</p>
+                                <div className="grid grid-cols-2 gap-3">
+                                    {[
+                                        {n: "전북은행", i: "https://iili.io/q1v0J1t.png"},
+                                        {n: "농협은행", i: "https://iili.io/q1v12nV.png"},
+                                        {n: "수협", i: "https://iili.io/q1v1hl9.jpg"},
+                                        {n: "신협", i: "https://iili.io/q1v1iHg.png"},
+                                        {n: "한국캐피탈", i: "https://iili.io/q1vVi1p.jpg"}
+                                    ].map((bank, i) => (
+                                        <div key={i} className="bg-white p-4 rounded-xl h-24 flex items-center justify-center border border-slate-100 shadow-sm">
+                                            <img src={bank.i} alt={bank.n} className="max-h-12 max-w-[85%] object-contain" />
+                                        </div>
+                                    ))}
+                                </div>
+                            </section>
+                        )}
+
+                        {activeTab === 'process' && (
+                            <section className="py-12 px-6 animate-fadeIn">
+                                <h2 className="text-2xl font-black text-center mb-10">진행과정</h2>
+                                <div className="space-y-4">
+                                    {[
+                                        {s: "01", icon: "phone-call", t: t[lang].process1, d: "전문 상담사의 심층 파악"},
+                                        {s: "02", icon: "file-text", t: t[lang].process2, d: "맞춤형 금융기관 신청"},
+                                        {s: "03", icon: "check-circle-2", t: t[lang].process3, d: "상세 조건 결과 안내"},
+                                        {s: "04", icon: "banknote", t: t[lang].process4, d: "최종 심사 후 입금"}
+                                    ].map((item, i) => (
+                                        <div key={i} className="bg-white p-5 rounded-[2rem] shadow-sm border border-slate-100 flex items-center space-x-5 relative overflow-hidden">
+                                            <span className="absolute top-2 right-4 text-3xl font-black text-slate-50">{item.s}</span>
+                                            <div className="w-11 h-11 bg-slate-50 rounded-xl flex items-center justify-center process-icon flex-shrink-0">
+                                                <i data-lucide={item.icon} className="text-[#800020]"></i>
+                                            </div>
+                                            <div className="text-left">
+                                                <h3 className="text-base font-black">{item.t}</h3>
+                                                <p className="text-[11px] text-slate-500 font-medium">{item.d}</p>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </section>
+                        )}
+                    </main>
+
+                    {/* Mobile Optimized Footer */}
+                    <footer className="bg-slate-900 text-slate-500 py-10 px-6 border-t-4 border-[#800020]">
+                        <img src="https://iili.io/qKNSOUx.png" className="h-8 brightness-0 invert opacity-60 mb-6" />
+                        <div className="space-y-1.5 text-[11px] leading-relaxed">
+                            <p className="text-slate-200 font-black text-xs mb-3">(주)스탠다드파트너스</p>
+                            <p>등록번호 : 840-88-02840 | 대표자 : 김민정</p>
+                            <p>소재지 : 인천 남동구 남동서로236번길 30, 2층</p>
+                            <p>email : srandardpartnerskor@gmail.com</p>
+                            <div className="pt-6 flex space-x-4 opacity-50 font-bold uppercase tracking-wider">
+                                <button onClick={() => navigateTo('home')}>Home</button>
+                                <button onClick={() => navigateTo('about')}>About</button>
+                                <button onClick={() => navigateTo('process')}>Process</button>
+                            </div>
+                            <p className="pt-4 opacity-30">© 2025 Standard Partners. All Rights Reserved.</p>
+                        </div>
+                    </footer>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
